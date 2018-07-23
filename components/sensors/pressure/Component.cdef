@@ -8,8 +8,8 @@ provides:
 {
     api:
     {
-        pressure.api
-        temperature.api
+        ${CURDIR}/../../../interfaces/pressure.api
+        ${CURDIR}/../../../interfaces/temperature.api
     }
 }
 

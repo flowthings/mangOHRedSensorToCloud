@@ -9,8 +9,8 @@ provides:
 {
     api:
     {
-        imu.api
-        temperature.api
+        ${CURDIR}/../../../interfaces/imu.api
+        ${CURDIR}/../../../interfaces/temperature.api
     }
 }
 

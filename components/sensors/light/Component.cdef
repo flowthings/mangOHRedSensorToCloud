@@ -8,7 +8,7 @@ provides:
 {
     api:
     {
-        light.api
+        ${CURDIR}/../../../interfaces/light.api
     }
 }
 
