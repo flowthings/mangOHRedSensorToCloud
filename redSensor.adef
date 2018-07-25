@@ -16,7 +16,6 @@ executables:
 {
     redSensor = (   components/sensors/imu
                     components/sensors/light
-                    components/sensors/position
                     components/sensors/pressure
                 )
 }
@@ -39,12 +38,8 @@ bindings:
     redSensor.light.le_adc -> modemService.le_adc
     redSensor.imu.le_adc -> modemService.le_adc
 
-    redSensor.position.le_pos -> positioningService.le_pos
-    redSensor.position.le_posCtrl -> positioningService.le_posCtrl
-
     redSensor.periodicSensor.dhubIO -> dataHub.io
     redSensor.imu.dhubIO -> dataHub.io
     redSensor.light.dhubIO -> dataHub.io
-    redSensor.position.dhubIO -> dataHub.io
     redSensor.pressure.dhubIO -> dataHub.io
 }
