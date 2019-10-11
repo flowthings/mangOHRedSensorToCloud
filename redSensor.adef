@@ -26,11 +26,6 @@ processes:
     {
         ( redSensor )
     }
-
-    envVars:
-    {
-        LE_LOG_LEVEL = DEBUG
-    }
 }
 
 bindings:
