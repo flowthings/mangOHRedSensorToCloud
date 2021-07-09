@@ -15,6 +15,12 @@
 #include "periodicSensor.h"
 #include "fileUtils.h"
 
+#ifdef MK_CONFIG_PERIODIC_SENSOR_ABSOLUTE
+#define PRESSURE_PREFIX_NAME   "/app/redSensor/"
+#else
+#define PRESSURE_PREFIX_NAME   ""
+#endif
+
 static const char PressureFile[] = "/driver/in_pressure_input";
 static const char TemperatureFile[] = "/driver/in_temp_input";
 
@@ -110,6 +116,15 @@ COMPONENT_INIT
 {
     // Use the periodic sensor component from the Data Hub to implement the timers and the
     // interface to the Data Hub.
-    psensor_Create("pressure", DHUBIO_DATA_TYPE_NUMERIC, "kPa", SamplePressure, NULL);
-    psensor_Create("pressure/temp", DHUBIO_DATA_TYPE_NUMERIC, "degC", SampleTemperature, NULL);
+    psensor_Create(PRESSURE_PREFIX_NAME "pressure",
+                   IO_DATA_TYPE_NUMERIC,
+                   "kPa",
+                   SamplePressure,
+                   NULL);
+
+    psensor_Create(PRESSURE_PREFIX_NAME "pressure/temp",
+                   IO_DATA_TYPE_NUMERIC,
+                   "degC",
+                   SampleTemperature,
+                   NULL);
 }

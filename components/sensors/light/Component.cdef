@@ -17,7 +17,11 @@ requires:
     api:
     {
         modemServices/le_adc.api
-        dhubIO = io.api
+#if ${MK_CONFIG_PERIODIC_SENSOR_ABSOLUTE} = y
+        dhub = admin.api
+#else
+        dhub = io.api
+#endif
     }
 
     component:

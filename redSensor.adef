@@ -33,8 +33,15 @@ bindings:
     redSensor.light.le_adc -> modemService.le_adc
     redSensor.imu.le_adc -> modemService.le_adc
 
+#if ${MK_CONFIG_PERIODIC_SENSOR_ABSOLUTE} = y
+    redSensor.periodicSensor.dhubIO -> dataHub.admin
+    redSensor.imu.dhub -> dataHub.admin
+    redSensor.light.dhub -> dataHub.admin
+    redSensor.pressure.dhub -> dataHub.admin
+#else
     redSensor.periodicSensor.dhubIO -> dataHub.io
-    redSensor.imu.dhubIO -> dataHub.io
-    redSensor.light.dhubIO -> dataHub.io
-    redSensor.pressure.dhubIO -> dataHub.io
+    redSensor.imu.dhub -> dataHub.io
+    redSensor.light.dhub -> dataHub.io
+    redSensor.pressure.dhub -> dataHub.io
+#endif
 }
