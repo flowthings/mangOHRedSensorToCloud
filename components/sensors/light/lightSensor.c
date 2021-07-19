@@ -13,6 +13,12 @@
 #include "periodicSensor.h"
 #include "lightSensor.h"
 
+#ifdef MK_CONFIG_PERIODIC_SENSOR_ABSOLUTE
+#define LIGHT_PREFIX_NAME   "/app/redSensor/"
+#else
+#define LIGHT_PREFIX_NAME   ""
+#endif
+
 const char lightSensorAdc[] = "EXT_ADC3";
 
 
@@ -39,7 +45,7 @@ static void Sample
 
 COMPONENT_INIT
 {
-    psensor_Create("light", DHUBIO_DATA_TYPE_NUMERIC, "", Sample, NULL);
+    psensor_Create(LIGHT_PREFIX_NAME "light", IO_DATA_TYPE_NUMERIC, "", Sample, NULL);
 }
 
 

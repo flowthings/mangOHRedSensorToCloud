@@ -15,6 +15,11 @@
 #include "fileUtils.h"
 #include "periodicSensor.h"
 
+#ifdef MK_CONFIG_PERIODIC_SENSOR_ABSOLUTE
+#define IMU_PREFIX_NAME   "/app/redSensor/"
+#else
+#define IMU_PREFIX_NAME   ""
+#endif
 
 //--------------------------------------------------------------------------------------------------
 /**
@@ -271,10 +276,10 @@ static void SampleTemp
 COMPONENT_INIT
 {
     // Use the Periodic Sensor component from the Data Hub to implement the sensor interfaces.
-    psensor_Create("gyro", DHUBIO_DATA_TYPE_JSON, "", SampleGyro, NULL);
-    psensor_Create("accel", DHUBIO_DATA_TYPE_JSON, "", SampleAccel, NULL);
-    psensor_Create("imu/temp", DHUBIO_DATA_TYPE_NUMERIC, "degC", SampleTemp, NULL);
+    psensor_Create(IMU_PREFIX_NAME "gyro", IO_DATA_TYPE_JSON, "", SampleGyro, NULL);
+    psensor_Create(IMU_PREFIX_NAME "accel", IO_DATA_TYPE_JSON, "", SampleAccel, NULL);
+    psensor_Create(IMU_PREFIX_NAME "imu/temp", IO_DATA_TYPE_NUMERIC, "degC", SampleTemp, NULL);
 
-    dhubIO_SetJsonExample("gyro/value", "{\"x\":0.1,\"y\":0.2,\"z\":0.3}");
-    dhubIO_SetJsonExample("accel/value", "{\"x\":0.1,\"y\":0.2,\"z\":0.3}");
+    dhub_SetJsonExample(IMU_PREFIX_NAME "gyro/value", "{\"x\":0.1,\"y\":0.2,\"z\":0.3}");
+    dhub_SetJsonExample(IMU_PREFIX_NAME "accel/value", "{\"x\":0.1,\"y\":0.2,\"z\":0.3}");
 }
